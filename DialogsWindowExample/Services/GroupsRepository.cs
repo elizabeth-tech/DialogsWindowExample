@@ -2,7 +2,7 @@
 
 namespace DialogsWindowExample.Services
 {
-    class GroupRepository : RepositoryInMemory<Group>
+    class GroupsRepository : RepositoryInMemory<Group>
     {
         protected override void Update(Group Source, Group Destination)
         {

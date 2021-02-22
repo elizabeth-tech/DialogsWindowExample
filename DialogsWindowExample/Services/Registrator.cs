@@ -4,9 +4,11 @@ namespace DialogsWindowExample.Services
 {
     internal static class Registrator
     {
+        // Здесь можем регистрировать любые сервисы
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            // Здесь можем регистрировать любые сервисы, которые захотим (может они в будущем появятся)
+            services.AddSingleton<StudentsRepository>();
+            services.AddSingleton<GroupsRepository>();
             return services;
         }
     }
