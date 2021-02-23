@@ -1,7 +1,9 @@
-﻿using Covid19.ViewModels.Base;
+﻿using Covid19.Infrastructure.Commands;
+using Covid19.ViewModels.Base;
 using DialogsWindowExample.Models;
 using DialogsWindowExample.Services;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace DialogsWindowExample.ViewModels
 {
@@ -54,6 +56,43 @@ namespace DialogsWindowExample.ViewModels
             get => selectedStudent;
             set => Set(ref selectedStudent, value);
         }
+
+        #endregion
+
+        #region Команды
+
+        #region Команда редактирования студента
+
+        private ICommand editStudentCommand;
+
+        /// <summary>Команда редактирования студента</summary>
+        public ICommand EditStudentCommand => editStudentCommand ??= new ActionCommand(OnEditStudentCommandExecuted, CanEditStudentCommandExecute);
+
+        private static bool CanEditStudentCommandExecute(object p) => p is Student;
+
+        private void OnEditStudentCommandExecuted(object p)
+        {
+
+        }
+
+        #endregion
+
+        #region Команда создания студента
+
+        /// <summary>Создание студента</summary>
+        private ICommand createNewStudentCommand;
+
+        /// <summary>Создание студента</summary>
+        public ICommand CreateNewStudentCommand => createNewStudentCommand ??= new ActionCommand(OnCreateNewStudentCommandExecuted, CanCreateNewStudentCommandExecute);
+
+        private static bool CanCreateNewStudentCommandExecute(object p) => p is Group;
+
+        private void OnCreateNewStudentCommandExecuted(object p)
+        {
+
+        }
+
+        #endregion
 
         #endregion
     }

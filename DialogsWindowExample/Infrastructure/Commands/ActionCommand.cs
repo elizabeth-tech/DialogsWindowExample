@@ -24,6 +24,10 @@ namespace Covid19.Infrastructure.Commands
         // Если нет делегата, то считаем, что команду можно выполнить, т.е true
         public override bool CanExecute(object parameter) => _canExecute?.Invoke(parameter) ?? true;
 
-        public override void Execute(object parameter) => _execute(parameter);
+        public override void Execute(object parameter)
+        {
+            if (!CanExecute(parameter)) return;
+            _execute(parameter);
+        }
     }
 }
