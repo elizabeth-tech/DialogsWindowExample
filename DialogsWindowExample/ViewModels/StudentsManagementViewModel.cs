@@ -31,14 +31,28 @@ namespace DialogsWindowExample.ViewModels
 
         #region Выбранная группа студентов
 
-        /// <summary>Заголовок окна</summary>
+        /// <summary>Выбранная группа студентов</summary>
         private Group selectedGroup;
 
-        /// <summary>Заголовок окна</summary>
+        /// <summary>Выбранная группа студентов</summary>
         public Group SelectedGroup
         {
             get => selectedGroup;
             set => Set(ref selectedGroup, value);
+        }
+
+        #endregion
+
+        #region Выбранный студент
+
+        /// <summary>Выбранный студент</summary>
+        private Student selectedStudent;
+
+        /// <summary>Выбранный студент</summary>
+        public Student SelectedStudent
+        {
+            get => selectedStudent;
+            set => Set(ref selectedStudent, value);
         }
 
         #endregion
