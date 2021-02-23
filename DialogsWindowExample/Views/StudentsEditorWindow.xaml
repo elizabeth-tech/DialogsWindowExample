@@ -8,7 +8,7 @@
         xmlns:cmd="clr-namespace:DialogsWindowExample.Infrastructure.Commands"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         
-        Title="Редактирование студента" Height="235" Width="366" ResizeMode="NoResize">
+        Title="Редактирование студента" Height="235" Width="366" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <DockPanel>
         <UniformGrid DockPanel.Dock="Bottom" Rows="1" HorizontalAlignment="Center">

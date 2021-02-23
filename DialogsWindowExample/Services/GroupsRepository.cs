@@ -1,4 +1,6 @@
 ﻿using DialogsWindowExample.Models;
+using System;
+using System.Linq;
 
 namespace DialogsWindowExample.Services
 {
@@ -11,5 +13,8 @@ namespace DialogsWindowExample.Services
             Destination.Name = Source.Name;
             Destination.Description = Source.Description;
         }
+
+        // Ищет первую попавшуюся группу с указанным именем
+        public Group Get(string groupName) => GetAll().FirstOrDefault(g => g.Name == groupName);
     }
 }

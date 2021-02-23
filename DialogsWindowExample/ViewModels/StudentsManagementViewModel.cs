@@ -2,6 +2,7 @@
 using Covid19.ViewModels.Base;
 using DialogsWindowExample.Models;
 using DialogsWindowExample.Services;
+using DialogsWindowExample.Services.Interfaces;
 using DialogsWindowExample.Views;
 using System.Collections.Generic;
 using System.Windows;
@@ -11,9 +12,14 @@ namespace DialogsWindowExample.ViewModels
 {
     class StudentsManagementViewModel : ViewModel
     {
-        public StudentsManagementViewModel(StudentsManager studentsManager) => this.studentsManager = studentsManager;
+        public StudentsManagementViewModel(StudentsManager studentsManager, IUserDialogService userDialog)
+        {
+            this.studentsManager = studentsManager;
+            this.userDialog = userDialog;
+        }
 
         private readonly StudentsManager studentsManager;
+        private readonly IUserDialogService userDialog;
 
         public IEnumerable<Student> students => studentsManager.Students;
 
@@ -74,20 +80,13 @@ namespace DialogsWindowExample.ViewModels
 
         private void OnEditStudentCommandExecuted(object p)
         {
-            var student = (Student)p;
-            var dlg = new StudentsEditorWindow
+            if (userDialog.Edit(p))
             {
-                FirstName = student.Name,
-                LastName = student.Surname,
-                Patronymic = student.Patronymic,
-                Birthday = student.Birthday,
-                Rating = student.Rating
-            };
-
-            if (dlg.ShowDialog() == true)
-                MessageBox.Show("Пользователь выполнил редактирование");
+                studentsManager.Update((Student)p);
+                userDialog.ShowInformation("Студент отредактирован", "Деканат");
+            }
             else
-                MessageBox.Show("Пользователь отказался");
+                userDialog.ShowInformation("Отказ от редактирования", "Деканат");
         }
 
         #endregion
@@ -104,7 +103,17 @@ namespace DialogsWindowExample.ViewModels
 
         private void OnCreateNewStudentCommandExecuted(object p)
         {
+            var group = (Group)p;
+            Student student = new Student();
 
+            if (!userDialog.Edit(student) || studentsManager.Create(student, group.Name))
+            {
+                OnPropertyChanged(nameof(students)); // уведомляем, что изменилась коллекция студентов
+                return;
+            }
+
+            if (userDialog.Confirm("Не удалось создать студента. Повторить?", "Менеджер студентов"))
+                OnCreateNewStudentCommandExecuted(p);
         }
 
         #endregion

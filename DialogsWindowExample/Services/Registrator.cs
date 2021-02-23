@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DialogsWindowExample.Services.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DialogsWindowExample.Services
 {
@@ -10,6 +11,7 @@ namespace DialogsWindowExample.Services
             services.AddSingleton<StudentsRepository>();
             services.AddSingleton<GroupsRepository>();
             services.AddSingleton<StudentsManager>();
+            services.AddTransient<IUserDialogService, WindowsUserDialogService>();
 
             return services;
         }
