@@ -5,11 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:vm="clr-namespace:DialogsWindowExample.ViewModels"
+        xmlns:cmd="clr-namespace:DialogsWindowExample.Infrastructure.Commands"
         
         DataContext="{Binding mainWindowViewModel, Source={StaticResource Locator}}"
         Title="{Binding Title}" Height="450" Width="800">
 
     <Grid>
+        <Button Height="30" Width="130">
+            <TextBlock Text="Окно управления"></TextBlock>
+            <Button.Command>
+                <cmd:ManageStudentsCommand/>
+            </Button.Command>
+        </Button>
 
     </Grid>
 </Window>
