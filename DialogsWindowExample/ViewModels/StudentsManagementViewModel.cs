@@ -2,7 +2,9 @@
 using Covid19.ViewModels.Base;
 using DialogsWindowExample.Models;
 using DialogsWindowExample.Services;
+using DialogsWindowExample.Views;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DialogsWindowExample.ViewModels
@@ -72,7 +74,20 @@ namespace DialogsWindowExample.ViewModels
 
         private void OnEditStudentCommandExecuted(object p)
         {
+            var student = (Student)p;
+            var dlg = new StudentsEditorWindow
+            {
+                FirstName = student.Name,
+                LastName = student.Surname,
+                Patronymic = student.Patronymic,
+                Birthday = student.Birthday,
+                Rating = student.Rating
+            };
 
+            if (dlg.ShowDialog() == true)
+                MessageBox.Show("Пользователь выполнил редактирование");
+            else
+                MessageBox.Show("Пользователь отказался");
         }
 
         #endregion
