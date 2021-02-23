@@ -6,9 +6,8 @@ namespace DialogsWindowExample.Services
 {
     static class TestData
     {
-        public static Group[] Groups { get; } = Enumerable
-           .Range(1, 10)
-           .Select(i => new Group { Name = $"Группа {i}" })
+        public static Group[] Groups { get; } = Enumerable.Range(1, 10)
+           .Select(i => new Group { Id =1, Name = $"Группа {i}", Description ="тест" })
            .ToArray();
 
         public static Student[] Students { get; } = CreateStudents(Groups);
