@@ -1,5 +1,4 @@
 ﻿using DialogsWindowExample.Models;
-using System;
 using System.Linq;
 
 namespace DialogsWindowExample.Services

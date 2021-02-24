@@ -3,9 +3,7 @@ using Covid19.ViewModels.Base;
 using DialogsWindowExample.Models;
 using DialogsWindowExample.Services;
 using DialogsWindowExample.Services.Interfaces;
-using DialogsWindowExample.Views;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Input;
 
 namespace DialogsWindowExample.ViewModels
